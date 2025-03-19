@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: poc-tax-service
+  profiles:
+    active: local
