@@ -1,7 +1,11 @@
-package com.myprojecticaro.poc_tax_service.domain.model;
+package com.myprojecticaro.poc_tax_service.infrastructure.repository.sale.entity;
 
 import java.math.BigDecimal;
 
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.product.entity.ProductEntity;
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Sale {
+public class SaleEntity {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,21 +22,22 @@ public class Sale {
     
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private ProductEntity product;
     
     @ManyToOne
     @JoinColumn(name = "state_id")
-    private State state;
+    private StateEntity state;
     
+   @Column(name = "sale_year")
     private Integer year;
     private BigDecimal price;
     private BigDecimal taxAmount;
 	
-    public Sale() {
+    public SaleEntity() {
 		super();
 	}
 
-	public Sale(Long id, Product product, State state, Integer year, BigDecimal price, BigDecimal taxAmount) {
+	public SaleEntity(Long id, ProductEntity product, StateEntity state, Integer year, BigDecimal price, BigDecimal taxAmount) {
 		super();
 		this.id = id;
 		this.product = product;
@@ -50,19 +55,19 @@ public class Sale {
 		this.id = id;
 	}
 
-	public Product getProduct() {
+	public ProductEntity getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(ProductEntity product) {
 		this.product = product;
 	}
 
-	public State getState() {
+	public StateEntity getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(StateEntity state) {
 		this.state = state;
 	}
 
