@@ -1,24 +1,40 @@
 package com.myprojecticaro.poc_tax_service.application.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
+
+import com.myprojecticaro.poc_tax_service.application.mapper.Mapper;
 import com.myprojecticaro.poc_tax_service.application.port.ProductRepositoryPort;
+import com.myprojecticaro.poc_tax_service.application.request.dto.ProductRequestDTO;
+import com.myprojecticaro.poc_tax_service.domain.model.Product;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.product.entity.ProductEntity;
 
 @Service
 public class ProductService {
 
-    private final ProductRepositoryPort productRepository;
+	private final ProductRepositoryPort productRepository;
 
     public ProductService(ProductRepositoryPort productRepository) {
         this.productRepository = productRepository;
     }
 
-    public ProductEntity saveProduct(ProductEntity product) {
-        return productRepository.save(product);
+    public void createProduct(ProductRequestDTO productRequestDTO) {
+        
+    	Product product = Mapper.toProduct(productRequestDTO);
+        
+        productRepository.save(product);
     }
 
-    public List<ProductEntity> getAllProducts() {
-        return productRepository.findAll();
+    public List<Product> getAllProducts() {
+        List<ProductEntity> productEntities = productRepository.findAll();
+        return productEntities.stream()
+                .map(entity -> new Product(entity.getId(), entity.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
     }
 }

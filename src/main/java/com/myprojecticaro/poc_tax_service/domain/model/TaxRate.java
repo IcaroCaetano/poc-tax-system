@@ -1,34 +1,28 @@
 package com.myprojecticaro.poc_tax_service.domain.model;
-import java.math.BigDecimal;
 
 public class TaxRate {
-	
+
     private final Long id;
-    
-    private final String state;
     
     private final int year;
     
-    private final BigDecimal rate;
+    private final Long productId;  
     
-    private final Product product;
+    private final String code; 
 
-    public TaxRate(Long id, String state, int year, BigDecimal rate, Product product) {
-        this.id = id;
-        this.state = state;
-        this.year = year;
-        this.rate = rate;
-        this.product = product;
-    }
+    public TaxRate(Long id, int year, Long productId, String code) {
+		super();
+		this.id = id;
+		this.year = year;
+		this.productId = productId;
+		this.code = code;
+	}
 
-    public Long getId() { return id; }
-    
-    public String getState() { return state; }
+	public Long getId() { return id; }
     
     public int getYear() { return year; }
-    
-    public BigDecimal getRate() { return rate; }
-    
-    public Product getProduct() { return product; }
-    
+
+	public Long getProductId() { return productId; }
+
+	public String getCode() { return code; }  
 }
