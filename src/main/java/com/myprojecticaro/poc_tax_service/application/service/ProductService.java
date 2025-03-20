@@ -30,7 +30,7 @@ public class ProductService {
     public List<Product> getAllProducts() {
         List<ProductEntity> productEntities = productRepository.findAll();
         return productEntities.stream()
-                .map(entity -> new Product(entity.getId(), entity.getName()))
+                .map(entity -> new Product(entity.getId(), entity.getName(), entity.getCategory(), entity.getBrand(), entity.getSerialNumber()))
                 .collect(Collectors.toList());
     }
 

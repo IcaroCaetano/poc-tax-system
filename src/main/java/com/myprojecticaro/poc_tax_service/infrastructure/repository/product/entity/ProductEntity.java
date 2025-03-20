@@ -13,15 +13,24 @@ public class ProductEntity {
     private Long id;
 	
     private String name;
+    
+    private String category;
+    
+    private String brand;
+    
+    private String serialNumber;
 
 	public ProductEntity() {
 		super();
 	}
 
-	public ProductEntity(Long id, String name) {
+	public ProductEntity(Long id, String name, String category, String brand, String serialNumber) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.category = category;
+		this.brand = brand;
+		this.serialNumber = serialNumber;
 	}
 
 	public Long getId() {
@@ -40,8 +49,34 @@ public class ProductEntity {
 		this.name = name;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + "]";
-	}	 
+		return "ProductEntity [id=" + id + ", name=" + name + ", category=" + category + ", brand=" + brand
+				+ ", serialNumber=" + serialNumber + "]";
+	}
+	 
 }

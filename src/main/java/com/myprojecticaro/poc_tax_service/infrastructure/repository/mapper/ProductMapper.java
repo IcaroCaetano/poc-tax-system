@@ -9,7 +9,10 @@ public class ProductMapper {
 
         return new ProductEntity(
                 product.getId(),
-                product.getName()
+                product.getName(),
+                product.getCategory(),
+                product.getBrand(),
+                product.getSerialNumber()
         );
     }
 }
