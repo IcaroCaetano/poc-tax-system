@@ -1,28 +1,38 @@
 package com.myprojecticaro.poc_tax_service.domain.model;
 
-public class TaxRate {
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    private final Long id;
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.product.entity.ProductEntity;
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.taxrate.entity.TaxRateEntity;
+
+public record TaxRate(Long id, int fiscalYear, Long productId, Long stateId, BigDecimal taxPercentage) {
     
-    private final int year;
-    
-    private final Long productId;  
-    
-    private final String code; 
-
-    public TaxRate(Long id, int year, Long productId, String code) {
-		super();
-		this.id = id;
-		this.year = year;
-		this.productId = productId;
-		this.code = code;
-	}
-
-	public Long getId() { return id; }
-    
-    public int getYear() { return year; }
-
-	public Long getProductId() { return productId; }
-
-	public String getCode() { return code; }  
+	public static TaxRate fromEntity(TaxRateEntity entity) {
+        return new TaxRate(
+            entity.getId(),
+            entity.getYear(),
+            entity.getProduct().getId(),
+            entity.getState().getId(),
+            entity.getTaxPercentage()
+        );
+    }
+	
+	 public static List<TaxRate> fromEntities(List<TaxRateEntity> entities) {
+	        return entities.stream()
+	            .map(TaxRate::fromEntity)
+	            .collect(Collectors.toList());
+	    }
+	 
+	 public TaxRateEntity toEntity(ProductEntity product, StateEntity state) {
+	        return new TaxRateEntity(
+	            id,
+	            product,
+	            state,
+	            fiscalYear,
+	            taxPercentage
+	        );
+	    }
 }
