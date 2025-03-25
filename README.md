@@ -28,7 +28,7 @@ To run the application, enter the project root folder and run the command:
 
 ```bash
 
-mvn clean package
+mvn clean install package
 
 ```
 

@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class StateEntity {
@@ -19,9 +18,6 @@ public class StateEntity {
 
     private String name;
     private String code;
-    
-    @OneToMany(mappedBy = "state")
-    private List<TaxRateEntity> taxRates;
     
 
 	public StateEntity() {
@@ -40,7 +36,6 @@ public class StateEntity {
 		this.id = id;
 		this.name = name;
 		this.code = code;
-		this.taxRates = taxRates;
 	}
 
 	public Long getId() {
@@ -67,16 +62,9 @@ public class StateEntity {
 		this.code = code;
 	}
 
-	public List<TaxRateEntity> getTaxRates() {
-		return taxRates;
-	}
-
-	public void setTaxRates(List<TaxRateEntity> taxRates) {
-		this.taxRates = taxRates;
-	}
 
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", name=" + name + ", code=" + code + ", taxRates=" + taxRates + "]";
+		return "State [id=" + id + ", name=" + name + ", code=" + code + "]";
 	}
 }
