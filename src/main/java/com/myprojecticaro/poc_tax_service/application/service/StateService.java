@@ -2,10 +2,10 @@ package com.myprojecticaro.poc_tax_service.application.service;
 
 import com.myprojecticaro.poc_tax_service.application.port.StateRepositoryPort;
 import com.myprojecticaro.poc_tax_service.domain.model.State;
-import com.myprojecticaro.poc_tax_service.infrastructure.repository.mapper.StateMapper;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +38,6 @@ public class StateService {
     
     @Transactional(readOnly = true)
     public List<State> getAllStates() {
-        List<StateEntity> entities = stateRepositoryPort.findAll();
-        return StateMapper.toModelList(entities);
+        return stateRepositoryPort.findAll();
     }
 }

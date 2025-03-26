@@ -5,9 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.myprojecticaro.poc_tax_service.application.mapper.Mapper;
 import com.myprojecticaro.poc_tax_service.application.port.ProductRepositoryPort;
-import com.myprojecticaro.poc_tax_service.application.request.dto.ProductRequestDTO;
 import com.myprojecticaro.poc_tax_service.domain.model.Product;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.product.entity.ProductEntity;
 
@@ -20,10 +18,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void createProduct(ProductRequestDTO productRequestDTO) {
-        
-    	Product product = Mapper.toProduct(productRequestDTO);
-        
+    public void createProduct(Product product) {
         productRepository.save(product);
     }
 

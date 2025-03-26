@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.myprojecticaro.poc_tax_service.application.port.ProductRepositoryPort;
 import com.myprojecticaro.poc_tax_service.domain.model.Product;
-import com.myprojecticaro.poc_tax_service.infrastructure.repository.mapper.ProductMapper;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.product.entity.ProductEntity;
 
 @Repository	
@@ -22,7 +21,7 @@ public class ProductRepositoryAdapter implements ProductRepositoryPort {
     @Override
     public ProductEntity save(Product product) {
     	
-    	ProductEntity entity = ProductMapper.toProductEntity(product);
+    	ProductEntity entity = product.toProductEntity(product);
     	
         return repository.save(entity);
     }

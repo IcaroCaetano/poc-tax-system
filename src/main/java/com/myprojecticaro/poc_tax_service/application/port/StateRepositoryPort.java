@@ -1,5 +1,6 @@
 package com.myprojecticaro.poc_tax_service.application.port;
 
+import com.myprojecticaro.poc_tax_service.domain.model.State;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface StateRepositoryPort {
     
     boolean existsByCode(String code);
     
-    Optional<StateEntity> findById(Long id);
+    public Optional<State> findById(Long id);
     
-    List<StateEntity> findAll();
+    public List<State> findAll();
 }

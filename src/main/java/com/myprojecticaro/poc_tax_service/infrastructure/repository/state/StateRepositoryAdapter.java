@@ -2,11 +2,13 @@ package com.myprojecticaro.poc_tax_service.infrastructure.repository.state;
 
 
 import com.myprojecticaro.poc_tax_service.application.port.StateRepositoryPort;
+import com.myprojecticaro.poc_tax_service.domain.model.State;
 import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class StateRepositoryAdapter implements StateRepositoryPort {
@@ -38,12 +40,14 @@ public class StateRepositoryAdapter implements StateRepositoryPort {
     }
 
     @Override
-    public Optional<StateEntity> findById(Long id) {
-        return repository.findById(id);
+    public Optional<State> findById(Long id) {
+        return repository.findById(id).map(State::toModel);
     }
     
     @Override
-    public List<StateEntity> findAll() {
-        return repository.findAll();
+    public List<State> findAll() {
+        return repository.findAll().stream()
+            .map(State::toModel)
+            .collect(Collectors.toList());
     }
 }
