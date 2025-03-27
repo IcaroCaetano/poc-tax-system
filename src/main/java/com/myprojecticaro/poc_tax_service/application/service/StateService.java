@@ -1,14 +1,13 @@
 package com.myprojecticaro.poc_tax_service.application.service;
 
-import com.myprojecticaro.poc_tax_service.application.port.StateRepositoryPort;
-import com.myprojecticaro.poc_tax_service.domain.model.State;
-import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.myprojecticaro.poc_tax_service.application.port.StateRepositoryPort;
+import com.myprojecticaro.poc_tax_service.domain.model.State;
+import com.myprojecticaro.poc_tax_service.infrastructure.repository.state.entity.StateEntity;
 
 @Service
 public class StateService {
